@@ -1,0 +1,71 @@
+// - Desarrollar una función que reciba por parámetro una vocal e indique que número de orden (del 1 al 5) le corresponde a dicha vocal. En caso de recibir algún dato que no sea String retornar null.
+
+function ordenVocal(vocal) {
+    if (typeof vocal != "string") return "null";
+
+    //Convertir a minúscula el parametro vocal
+    let vocalMinuscula = vocal.toLowerCase();
+    switch (vocalMinuscula) {
+        case ("a"):
+            return (1);
+        case ("e"):
+            return (2);
+        case ("i"):
+            return (3);
+        case ("o"):
+            return (4);
+        case ("u"):
+            return (5);
+    }
+}
+
+console.log(ordenVocal("A")) // 1
+console.log(ordenVocal("o")) // 4
+console.log(ordenVocal("oasdaas")) // undefined
+console.log(ordenVocal(23456)) // null
+
+
+
+// - Desarrollar una función que reciba por parámetro dos números y calcule el valor que surja de acumular los resultados de su suma, resta, multiplicación y división. Si ese valor obtenido es un número par, retornar true, de lo contrario retornar false.
+
+function operaciones2(num1, num2) {
+    let suma = (num1 + num2);
+    let resta = (num1 - num2);
+    let multiplicacion = (num1 * num2);
+    let division = (num1 / num2);
+    let resultados = [suma, resta, multiplicacion, division];
+    let resultados2 = []
+
+    for (let resultado of resultados) {
+        if (resultado % 2 === 0) {
+            resultados2.push([resultado, true])
+        } else {
+            resultados2.push([resultado, false])
+        }
+    }
+    return resultados2;
+}
+
+console.log(operaciones2(10, 5)) // [[15, false], [5, false], [50, true], [2, true]]
+console.log(operaciones2(1, 5)) // [[6, true], [-4, true], [5, false], [0.2, false]]
+
+// - Un turista quiere averiguar a qué país del mundo puede viajar con el dinero que cuenta. Tiene ahorrado 500.000 pesos y actualmente sale $x el dólar y $z el real. Realizar una función que indique a qué país puede viajar sabiendo que para ir a Suiza necesitarà 600 dólares o 800 reales, para ir a Estados Unidos necesitarà màs de 1000 dólares y para ir a Brasil necesitarà 2000 reales y 200 dólares.
+
+function dolarAPeso(montoD, precioD) {
+    return montoD * precioD;
+}
+function realAPeso(montoR, precioR) {
+    return montoR * precioR;
+}
+
+function dondeViajo(precioDolar, precioReal) {
+    let ahorrosPesos = 500000;
+    let viajeSuiza = (ahorrosPesos - dolarAPeso(600, precioDolar)) >= 0 || (ahorrosPesos - realAPeso(800, precioReal)) >= 0;
+    let viajeEEUU = (ahorrosPesos - dolarAPeso(1000, precioDolar)) > 0;
+    let viajeBrasil = (ahorrosPesos - dolarAPeso(200, precioDolar) - realAPeso(2000, precioReal)) >= 0;
+
+    return { viajeSuiza, viajeEEUU, viajeBrasil }
+}
+
+console.log(dondeViajo(200, 39)) //{viajeSuiza: true, viajeEEUU: true, viajeBrasil: true}
+console.log(dondeViajo(500, 250)) //{viajeSuiza: true, viajeEEUU: false, viajeBrasil: false}
