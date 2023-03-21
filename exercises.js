@@ -69,3 +69,80 @@ function dondeViajo(precioDolar, precioReal) {
 
 console.log(dondeViajo(200, 39)) //{viajeSuiza: true, viajeEEUU: true, viajeBrasil: true}
 console.log(dondeViajo(500, 250)) //{viajeSuiza: true, viajeEEUU: false, viajeBrasil: false}
+
+// Realizar una función que indique si una persona se encuentra apta para una competencia física. Para eso, debemos realizar una función  que reciba dos parámetros.
+// 1. La edad de la persona (Number)
+// 2. Si ha entregado sus estudios médicos (Booleano)
+// La función deberá evaluar las siguientes condiciones y retornar en cada caso lo que se pida:
+// A) Si ha entregado sus estudios y es mayor o igual de 18 años: retorna un valor booleano true.
+// B) Si ha entregado sus estudios pero es menor de 18 años: retorna un string que diga “Sólo puedes competir con un adulto acompañante”.
+// C) Para cualquier otro caso: retorna un valor booleano false.
+
+function personaApta(edad, estudios) {
+    if (estudios === true) {
+        if (edad >= 18) {
+            return true;
+        } else {
+            return "Sólo puedes competir con un adulto acompañante"
+        }
+    } else {
+        return false;
+    }
+}
+
+console.log(personaApta(17, true)) // Sólo puedes competir con un adulto acompañante
+console.log(personaApta(15, false)) // false
+console.log(personaApta(20, true)) // true
+console.log(personaApta(25, false)) // false
+
+// Dado el siguiente arreglo de objetos:
+
+// let libros = [
+//     {
+//         nombre : "historiasInconscientes",
+//         autor : "Gabriel Rolón",
+//         paginas: 352
+//     },
+//     {
+//         nombre : "operacionMasacre",
+//         autor : "Rodolfo Walsh",
+//         paginas : 236
+//     },
+//     {
+//         nombre   : "elAlquimista",
+//         autor : "Paulo Coehlo",
+//         paginas: 192
+//     },
+//     {
+//         nombre  : "elCampamento",
+//         autor : "Blue Jeans",
+//         paginas: 480
+//     }
+// ]
+
+// Realizar una función que reciba un array como parámetro, y lo recorra para filtrar los objetos cuya cantidad de páginas sea mayor a 300. La función deberá retornar un nuevo arreglo con los libros que cumplan con la condición antes mencionada.
+// Ejecutar el correspondiente llamado a la función realizada en el inciso anterior para mostrar su correcto funcionamiento.
+
+let libros = [
+    {nombre : "historiasInconscientes", autor : "Gabriel Rolón", paginas: 352},
+    {nombre : "operacionMasacre", autor : "Rodolfo Walsh", paginas : 236},
+    {nombre   : "elAlquimista", autor : "Paulo Coehlo", paginas: 192},
+    {nombre  : "elCampamento", autor : "Blue Jeans", paginas: 480}
+]
+
+let librosMasDe300Páginas = []
+
+function filtrarLibrosPorPáginas(array){
+    for(let libro of libros){
+        if(libro.paginas > 300){
+            librosMasDe300Páginas.push(libro)
+        }
+    }
+    return librosMasDe300Páginas;
+}
+
+console.log(filtrarLibrosPorPáginas(libros))
+//[
+    //{nombre: 'historiasInconscientes', autor: 'Gabriel Rolón', paginas: 352}, 
+    //{ nombre: 'elCampamento', autor: 'Blue Jeans', paginas: 480 }
+//]
